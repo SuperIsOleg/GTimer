@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4DD5E3C27D3AFE000445D04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E3B27D3AFE000445D04 /* AppDelegate.swift */; };
+		F4DD5E3E27D3AFE000445D04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E3D27D3AFE000445D04 /* SceneDelegate.swift */; };
+		F4DD5E4027D3AFE000445D04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E3F27D3AFE000445D04 /* ViewController.swift */; };
+		F4DD5E4627D3AFE000445D04 /* GTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E4427D3AFE000445D04 /* GTimer.xcdatamodeld */; };
+		F4DD5E4827D3AFE100445D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4DD5E4727D3AFE100445D04 /* Assets.xcassets */; };
+		F4DD5E4B27D3AFE100445D04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4DD5E4927D3AFE100445D04 /* LaunchScreen.storyboard */; };
+		F4DD5E5627D3AFE100445D04 /* GTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E5527D3AFE100445D04 /* GTimerTests.swift */; };
+		F4DD5E6027D3AFE100445D04 /* GTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E5F27D3AFE100445D04 /* GTimerUITests.swift */; };
+		F4DD5E6227D3AFE100445D04 /* GTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E6127D3AFE100445D04 /* GTimerUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4DD5E5227D3AFE100445D04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4DD5E3027D3AFDF00445D04 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4DD5E3727D3AFE000445D04;
+			remoteInfo = GTimer;
+		};
+		F4DD5E5C27D3AFE100445D04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4DD5E3027D3AFDF00445D04 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4DD5E3727D3AFE000445D04;
+			remoteInfo = GTimer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F4DD5E3827D3AFE000445D04 /* GTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4DD5E3B27D3AFE000445D04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F4DD5E3D27D3AFE000445D04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F4DD5E3F27D3AFE000445D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F4DD5E4527D3AFE000445D04 /* GTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GTimer.xcdatamodel; sourceTree = "<group>"; };
+		F4DD5E4727D3AFE100445D04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4DD5E4A27D3AFE100445D04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F4DD5E4C27D3AFE100445D04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4DD5E5127D3AFE100445D04 /* GTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4DD5E5527D3AFE100445D04 /* GTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTimerTests.swift; sourceTree = "<group>"; };
+		F4DD5E5B27D3AFE100445D04 /* GTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4DD5E5F27D3AFE100445D04 /* GTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTimerUITests.swift; sourceTree = "<group>"; };
+		F4DD5E6127D3AFE100445D04 /* GTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4DD5E3527D3AFE000445D04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4DD5E4E27D3AFE100445D04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4DD5E5827D3AFE100445D04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4DD5E2F27D3AFDF00445D04 = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E3A27D3AFE000445D04 /* GTimer */,
+				F4DD5E5427D3AFE100445D04 /* GTimerTests */,
+				F4DD5E5E27D3AFE100445D04 /* GTimerUITests */,
+				F4DD5E3927D3AFE000445D04 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4DD5E3927D3AFE000445D04 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E3827D3AFE000445D04 /* GTimer.app */,
+				F4DD5E5127D3AFE100445D04 /* GTimerTests.xctest */,
+				F4DD5E5B27D3AFE100445D04 /* GTimerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4DD5E3A27D3AFE000445D04 /* GTimer */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E7327D3B25F00445D04 /* Model */,
+				F4DD5E7227D3B25100445D04 /* View */,
+				F4DD5E7027D3B23800445D04 /* Controllers */,
+				F4DD5E6E27D3B1F300445D04 /* Application */,
+				F4DD5E6F27D3B21800445D04 /* Recouerce */,
+			);
+			path = GTimer;
+			sourceTree = "<group>";
+		};
+		F4DD5E5427D3AFE100445D04 /* GTimerTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E5527D3AFE100445D04 /* GTimerTests.swift */,
+			);
+			path = GTimerTests;
+			sourceTree = "<group>";
+		};
+		F4DD5E5E27D3AFE100445D04 /* GTimerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E5F27D3AFE100445D04 /* GTimerUITests.swift */,
+				F4DD5E6127D3AFE100445D04 /* GTimerUITestsLaunchTests.swift */,
+			);
+			path = GTimerUITests;
+			sourceTree = "<group>";
+		};
+		F4DD5E6E27D3B1F300445D04 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E3B27D3AFE000445D04 /* AppDelegate.swift */,
+				F4DD5E3D27D3AFE000445D04 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F4DD5E6F27D3B21800445D04 /* Recouerce */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E4727D3AFE100445D04 /* Assets.xcassets */,
+				F4DD5E4927D3AFE100445D04 /* LaunchScreen.storyboard */,
+				F4DD5E4C27D3AFE100445D04 /* Info.plist */,
+				F4DD5E4427D3AFE000445D04 /* GTimer.xcdatamodeld */,
+			);
+			path = Recouerce;
+			sourceTree = "<group>";
+		};
+		F4DD5E7027D3B23800445D04 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD5E3F27D3AFE000445D04 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F4DD5E7227D3B25100445D04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F4DD5E7327D3B25F00445D04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4DD5E3727D3AFE000445D04 /* GTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4DD5E6527D3AFE100445D04 /* Build configuration list for PBXNativeTarget "GTimer" */;
+			buildPhases = (
+				F4DD5E3427D3AFE000445D04 /* Sources */,
+				F4DD5E3527D3AFE000445D04 /* Frameworks */,
+				F4DD5E3627D3AFE000445D04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GTimer;
+			productName = GTimer;
+			productReference = F4DD5E3827D3AFE000445D04 /* GTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4DD5E5027D3AFE100445D04 /* GTimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4DD5E6827D3AFE100445D04 /* Build configuration list for PBXNativeTarget "GTimerTests" */;
+			buildPhases = (
+				F4DD5E4D27D3AFE100445D04 /* Sources */,
+				F4DD5E4E27D3AFE100445D04 /* Frameworks */,
+				F4DD5E4F27D3AFE100445D04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4DD5E5327D3AFE100445D04 /* PBXTargetDependency */,
+			);
+			name = GTimerTests;
+			productName = GTimerTests;
+			productReference = F4DD5E5127D3AFE100445D04 /* GTimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F4DD5E5A27D3AFE100445D04 /* GTimerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4DD5E6B27D3AFE100445D04 /* Build configuration list for PBXNativeTarget "GTimerUITests" */;
+			buildPhases = (
+				F4DD5E5727D3AFE100445D04 /* Sources */,
+				F4DD5E5827D3AFE100445D04 /* Frameworks */,
+				F4DD5E5927D3AFE100445D04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4DD5E5D27D3AFE100445D04 /* PBXTargetDependency */,
+			);
+			name = GTimerUITests;
+			productName = GTimerUITests;
+			productReference = F4DD5E5B27D3AFE100445D04 /* GTimerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4DD5E3027D3AFDF00445D04 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					F4DD5E3727D3AFE000445D04 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					F4DD5E5027D3AFE100445D04 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = F4DD5E3727D3AFE000445D04;
+					};
+					F4DD5E5A27D3AFE100445D04 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = F4DD5E3727D3AFE000445D04;
+					};
+				};
+			};
+			buildConfigurationList = F4DD5E3327D3AFDF00445D04 /* Build configuration list for PBXProject "GTimer" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4DD5E2F27D3AFDF00445D04;
+			productRefGroup = F4DD5E3927D3AFE000445D04 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4DD5E3727D3AFE000445D04 /* GTimer */,
+				F4DD5E5027D3AFE100445D04 /* GTimerTests */,
+				F4DD5E5A27D3AFE100445D04 /* GTimerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4DD5E3627D3AFE000445D04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4DD5E4B27D3AFE100445D04 /* LaunchScreen.storyboard in Resources */,
+				F4DD5E4827D3AFE100445D04 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4DD5E4F27D3AFE100445D04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4DD5E5927D3AFE100445D04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4DD5E3427D3AFE000445D04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4DD5E4027D3AFE000445D04 /* ViewController.swift in Sources */,
+				F4DD5E3C27D3AFE000445D04 /* AppDelegate.swift in Sources */,
+				F4DD5E3E27D3AFE000445D04 /* SceneDelegate.swift in Sources */,
+				F4DD5E4627D3AFE000445D04 /* GTimer.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4DD5E4D27D3AFE100445D04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4DD5E5627D3AFE100445D04 /* GTimerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4DD5E5727D3AFE100445D04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4DD5E6227D3AFE100445D04 /* GTimerUITestsLaunchTests.swift in Sources */,
+				F4DD5E6027D3AFE100445D04 /* GTimerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4DD5E5327D3AFE100445D04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4DD5E3727D3AFE000445D04 /* GTimer */;
+			targetProxy = F4DD5E5227D3AFE100445D04 /* PBXContainerItemProxy */;
+		};
+		F4DD5E5D27D3AFE100445D04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4DD5E3727D3AFE000445D04 /* GTimer */;
+			targetProxy = F4DD5E5C27D3AFE100445D04 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F4DD5E4927D3AFE100445D04 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4DD5E4A27D3AFE100445D04 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4DD5E6327D3AFE100445D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F4DD5E6427D3AFE100445D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4DD5E6627D3AFE100445D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U84988C6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GTimer/Recouerce/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olegkalistraov.GTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F4DD5E6727D3AFE100445D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U84988C6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GTimer/Recouerce/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olegkalistraov.GTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F4DD5E6927D3AFE100445D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U84988C6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olegkalistraov.GTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTimer.app/GTimer";
+			};
+			name = Debug;
+		};
+		F4DD5E6A27D3AFE100445D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U84988C6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olegkalistraov.GTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTimer.app/GTimer";
+			};
+			name = Release;
+		};
+		F4DD5E6C27D3AFE100445D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U84988C6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olegkalistraov.GTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GTimer;
+			};
+			name = Debug;
+		};
+		F4DD5E6D27D3AFE100445D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U84988C6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olegkalistraov.GTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GTimer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4DD5E3327D3AFDF00445D04 /* Build configuration list for PBXProject "GTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4DD5E6327D3AFE100445D04 /* Debug */,
+				F4DD5E6427D3AFE100445D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4DD5E6527D3AFE100445D04 /* Build configuration list for PBXNativeTarget "GTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4DD5E6627D3AFE100445D04 /* Debug */,
+				F4DD5E6727D3AFE100445D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4DD5E6827D3AFE100445D04 /* Build configuration list for PBXNativeTarget "GTimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4DD5E6927D3AFE100445D04 /* Debug */,
+				F4DD5E6A27D3AFE100445D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4DD5E6B27D3AFE100445D04 /* Build configuration list for PBXNativeTarget "GTimerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4DD5E6C27D3AFE100445D04 /* Debug */,
+				F4DD5E6D27D3AFE100445D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F4DD5E4427D3AFE000445D04 /* GTimer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F4DD5E4527D3AFE000445D04 /* GTimer.xcdatamodel */,
+			);
+			currentVersion = F4DD5E4527D3AFE000445D04 /* GTimer.xcdatamodel */;
+			path = GTimer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F4DD5E3027D3AFDF00445D04 /* Project object */;
+}
