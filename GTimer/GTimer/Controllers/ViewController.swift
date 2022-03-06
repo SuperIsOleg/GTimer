@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     let timerLabel : UILabel = {
         let timerLabel = UILabel()
         timerLabel.text = "1"
-        timerLabel.font = UIFont.boldSystemFont(ofSize: 50)
+        timerLabel.font = UIFont.systemFont(ofSize: 50)
         timerLabel.textColor = .white
         timerLabel.numberOfLines = 0
         timerLabel.textAlignment = .center
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         return timerLabel
     }()
     
-    let startButton : UIButton = {
+    private let startButton : UIButton = {
         let startButton = UIButton()
         startButton.layer.cornerRadius = 20
         startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
@@ -95,7 +95,6 @@ class ViewController: UIViewController {
         shapeLayer.lineCap = CAShapeLayerLineCap.round
         shapeLayer.strokeColor = UIColor(named: "TimerColor")!.cgColor
         cercleTimer.layer.addSublayer(shapeLayer)
-        
     }
     
     func basicAnimation() {
@@ -127,15 +126,13 @@ extension ViewController {
             timerLabel.centerYAnchor.constraint(equalTo: cercleTimer.centerYAnchor)
         ])
         
-        cercleTimer.addSubview(startButton)
+        view.addSubview(startButton)
         NSLayoutConstraint.activate([
             startButton.centerXAnchor.constraint(equalTo: cercleTimer.centerXAnchor),
             startButton.bottomAnchor.constraint(equalTo: cercleTimer.bottomAnchor, constant: 178),
             startButton.heightAnchor.constraint(equalToConstant: 120),
             startButton.widthAnchor.constraint(equalToConstant: 120)
         ])
-        
     }
-    
 }
 
