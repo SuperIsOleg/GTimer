@@ -51,16 +51,13 @@ class ViewController: UIViewController {
     
     var timer = Timer()
     var isTimerStarted = false
-    
     let shapeLayer = CAShapeLayer()
-    
     var durationTimer = 300
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.animationCircular()
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
