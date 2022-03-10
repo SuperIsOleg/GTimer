@@ -28,6 +28,14 @@ class ViewController: UIViewController {
         return timerLabel
     }()
     
+    let pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 2
+        pageControl.backgroundColor = nil
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        return pageControl
+    }()
+    
     private let startButton : UIButton = {
         let startButton = UIButton()
         startButton.layer.cornerRadius = 20
@@ -48,19 +56,40 @@ class ViewController: UIViewController {
         return cancelButton
     }()
     
+    let scrollView = UIScrollView()
     
     var timer = Timer()
+    var durationTimer = 300
     var isTimerStarted = false
     let shapeLayer = CAShapeLayer()
-    var durationTimer = 300
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.animationCircular()
+        
+        if scrollView.subviews.count == 2 {
+            configureScrollView()
+        }
+    }
+    
+    func configureScrollView() {
+        scrollView.contentSize = CGSize(width: view.frame.size.width*2, height: scrollView.frame.size.height)
+        scrollView.isPagingEnabled = true
+        let colors: [UIColor] = [.green, .red]
+        for x in 0..<2 {
+            let page = UIView(frame: CGRect(x: CGFloat(x) * view.frame.size.width, y: 0, width: view.frame.self.width, height:  scrollView.frame.size.height))
+            page.backgroundColor = colors[x]
+            scrollView.addSubview(page)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pageControl.addTarget(self, action: #selector(pageControlDidChange(_ :)), for: .valueChanged)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.delegate = self
+        view.addSubview(scrollView)
+        view.addSubview(pageControl)
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
@@ -72,6 +101,11 @@ class ViewController: UIViewController {
         
         startButton.addTarget(self, action: #selector(startButtonTaped), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancelButtonTaped), for: .touchUpInside)
+    }
+    
+    @objc func pageControlDidChange(_ sender: UIPageControl) {
+        let cerrent = sender.currentPage
+        scrollView.setContentOffset(CGPoint(x: CGFloat(cerrent) * view.frame.size.width, y: 0), animated: true)
     }
     
     @objc func startButtonTaped() {
@@ -103,12 +137,12 @@ class ViewController: UIViewController {
         isTimerStarted = false
         timerLabel.text = "05:00"
         startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
+        
     }
     
     @objc func timerAction() {
         durationTimer -= 1
         timerLabel.text = formatTimer()
-        print(durationTimer)
         
         if durationTimer == 0 {
             timer.invalidate()
@@ -154,6 +188,15 @@ class ViewController: UIViewController {
 extension ViewController {
     
     func setConstraints() {
+        
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 320),
+            scrollView.heightAnchor.constraint(equalToConstant: 380),
+            scrollView.widthAnchor.constraint(equalToConstant: view.frame.size.width)
+        ])
+        
         view.addSubview(cercleTimer)
         NSLayoutConstraint.activate([
             cercleTimer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -168,10 +211,18 @@ extension ViewController {
             timerLabel.centerYAnchor.constraint(equalTo: cercleTimer.centerYAnchor)
         ])
         
+        view.addSubview(pageControl)
+        NSLayoutConstraint.activate([
+            pageControl.centerXAnchor.constraint(equalTo: cercleTimer.centerXAnchor),
+            pageControl.topAnchor.constraint(equalTo: cercleTimer.bottomAnchor, constant: 0),
+            pageControl.heightAnchor.constraint(equalToConstant: 50),
+            pageControl.widthAnchor.constraint(equalToConstant: 200)
+        ])
+        
         view.addSubview(startButton)
         NSLayoutConstraint.activate([
             startButton.centerXAnchor.constraint(equalTo: cercleTimer.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: cercleTimer.bottomAnchor, constant: 178),
+            startButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 0),
             startButton.heightAnchor.constraint(equalToConstant: 120),
             startButton.widthAnchor.constraint(equalToConstant: 120)
         ])
@@ -183,6 +234,12 @@ extension ViewController {
             cancelButton.heightAnchor.constraint(equalToConstant: 30),
             cancelButton.widthAnchor.constraint(equalToConstant: 70)
         ])
+    }
+}
+
+extension ViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
     }
 }
 
