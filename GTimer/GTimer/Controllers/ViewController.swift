@@ -84,8 +84,23 @@ class ViewController: UIViewController {
     
     lazy  var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
+        
+        let colors: [UIColor] = [UIColor(named: "TimerColorWork")!, UIColor(named: "TimerColorBreak")!]
+        
+        for x in 0..<views.count {
+            if x == 0 {
+                pageControl.currentPageIndicatorTintColor = colors[x]
+            } else {
+                pageControl.pageIndicatorTintColor = colors[x]
+            }
+        }
+        
         pageControl.numberOfPages = views.count
+        pageControl.currentPage = 0
         pageControl.backgroundColor = nil
+//        pageControl.currentPageIndicatorTintColor = UIColor(named: "TimerColorWork") // цвет выбранной вьюшки
+//        pageControl.pageIndicatorTintColor = .green // цвет не выбранной вьюшки
+        pageControl.preferredIndicatorImage = UIImage(named: "PageIndecator")
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
@@ -126,6 +141,7 @@ class ViewController: UIViewController {
     var timer = Timer()
     var durationTimer = 60
     var isTimerStarted = false
+    var isAnimationStarted = false
     let shapeLayerWorkTimer = CAShapeLayer()
     let shapeLayerBreakTimer = CAShapeLayer()
     
@@ -142,6 +158,8 @@ class ViewController: UIViewController {
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor(named: "LightBlue")!.cgColor,
                                 UIColor(named: "DarkBlue")!.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         view.layer.addSublayer(gradientLayer)
         
         scrollView.frame = view.bounds
@@ -157,8 +175,8 @@ class ViewController: UIViewController {
     }
     
     @objc func pageControlDidChange(_ sender: UIPageControl) {
-        let cerrent = sender.currentPage
-        scrollView.setContentOffset(CGPoint(x: CGFloat(cerrent) * view.frame.size.width, y: 0), animated: true)
+        let current = sender.currentPage
+        scrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
     }
     
     @objc func startButtonTaped() {
@@ -166,12 +184,13 @@ class ViewController: UIViewController {
         cancelButton.alpha = 1.0
         
         if !isTimerStarted{
-            basicAnimation()
+            startResumeAnimation()
             startTimer()
             isTimerStarted = true
             startButton.setBackgroundImage(UIImage(named: "PauseButton"), for: .normal)
             
         } else {
+            pauseAnimation()
             timer.invalidate()
             isTimerStarted = false
             startButton.setBackgroundImage(UIImage(named: "ResumeButton"), for: .normal)
@@ -179,10 +198,11 @@ class ViewController: UIViewController {
     }
     
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc func cancelButtonTaped() {
+        stopAnimation()
         cancelButton.isEnabled = false
         cancelButton.alpha = 0.5
         timer.invalidate()
@@ -190,15 +210,21 @@ class ViewController: UIViewController {
         isTimerStarted = false
         timerWorkLabel.text = "01:00"
         startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
+       
     }
     
-    @objc func timerAction() {
-        durationTimer -= 1
-        timerWorkLabel.text = formatTimer()
-        
-        if durationTimer == 0 {
+    @objc func updateTimer() {
+        if durationTimer < 1 {
+        cancelButton.isEnabled = false
+            cancelButton.alpha = 0.5
+            startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
             timer.invalidate()
+            durationTimer = 60
+            isTimerStarted = false
             timerWorkLabel.text = "01:00"
+        } else {
+            durationTimer -= 1
+            timerWorkLabel.text = formatTimer()
         }
     }
     
@@ -242,16 +268,63 @@ class ViewController: UIViewController {
         cercleTimerBreakImage.layer.addSublayer(shapeLayerBreakTimer)
     }
     
-    func basicAnimation() {
+    func startResumeAnimation() {
+        if !isAnimationStarted {
+            startAnimation()
+        } else {
+            resumeAnimation()
+        }
+    }
+    
+    func startAnimation() {
         
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
         
-        basicAnimation.toValue = 0
-        basicAnimation.duration = CFTimeInterval(durationTimer)
-        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-        basicAnimation.isRemovedOnCompletion = true
-        shapeLayerWorkTimer.add(basicAnimation, forKey: "basicAnimation")
-        shapeLayerBreakTimer.add(basicAnimation, forKey: "basicAnimation")
+        resetAnimation()
+        shapeLayerWorkTimer.strokeEnd = 0.0
+        animation.toValue = 0
+        animation.duration = CFTimeInterval(durationTimer)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = true
+        shapeLayerWorkTimer.add(animation, forKey: "startAnimation")
+        shapeLayerBreakTimer.add(animation, forKey: "startAnimation")
+        isAnimationStarted = true
+    }
+    
+    func resetAnimation() {
+        shapeLayerWorkTimer.speed = 1.0
+        shapeLayerWorkTimer.timeOffset = 0.0
+        shapeLayerWorkTimer.beginTime = 0.0
+        shapeLayerWorkTimer.strokeEnd = 0.0
+        isAnimationStarted = false
+    }
+    
+    func pauseAnimation() {
+        let pausedTime = shapeLayerWorkTimer.convertTime(CACurrentMediaTime(), from: nil)
+        shapeLayerWorkTimer.speed = 0.0
+        shapeLayerWorkTimer.timeOffset = pausedTime
+    }
+    
+    func resumeAnimation() {
+        let pausedTime = shapeLayerWorkTimer.timeOffset
+        shapeLayerWorkTimer.speed = 1.0
+        shapeLayerWorkTimer.timeOffset = 0.0
+        shapeLayerWorkTimer.beginTime = 0.0
+        let timeSincePaused = shapeLayerWorkTimer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        shapeLayerWorkTimer.beginTime = timeSincePaused
+    }
+    
+    func stopAnimation() {
+        shapeLayerWorkTimer.speed = 1.0
+        shapeLayerWorkTimer.timeOffset = 0.0
+        shapeLayerWorkTimer.beginTime = 0.0
+        shapeLayerWorkTimer.strokeEnd = 0.0
+        shapeLayerWorkTimer.removeAllAnimations()
+        isAnimationStarted = false
+    }
+ 
+    internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        stopAnimation()
     }
 }
 
@@ -309,15 +382,15 @@ extension ViewController {
         view.addSubview(pageControl)
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 530),
-            pageControl.heightAnchor.constraint(equalToConstant: 25),
+            pageControl.topAnchor.constraint(equalTo: viewTimerWorked.bottomAnchor, constant: 30),
+            pageControl.heightAnchor.constraint(equalToConstant: 10),
             pageControl.widthAnchor.constraint(equalToConstant: 200)
         ])
         
         view.addSubview(startButton)
         NSLayoutConstraint.activate([
             startButton.centerXAnchor.constraint(equalTo: pageControl.centerXAnchor),
-            startButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 0),
+            startButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 70),
             startButton.heightAnchor.constraint(equalToConstant: 120),
             startButton.widthAnchor.constraint(equalToConstant: 120)
         ])
