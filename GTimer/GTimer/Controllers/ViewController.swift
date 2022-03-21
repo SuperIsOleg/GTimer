@@ -241,7 +241,7 @@ class ViewController: UIViewController {
         
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         
-        resetAnimation()
+        stopAnimation()
         shapeLayerWorkTimer.strokeEnd = 0.0
         animation.toValue = 0
         animation.duration = CFTimeInterval(durationTimer)
@@ -250,14 +250,6 @@ class ViewController: UIViewController {
         shapeLayerWorkTimer.add(animation, forKey: "startAnimation")
         shapeLayerBreakTimer.add(animation, forKey: "startAnimation")
         isAnimationStarted = true
-    }
-    
-    func resetAnimation() {
-        shapeLayerWorkTimer.speed = 1.0
-        shapeLayerWorkTimer.timeOffset = 0.0
-        shapeLayerWorkTimer.beginTime = 0.0
-        shapeLayerWorkTimer.strokeEnd = 0.0
-        isAnimationStarted = false
     }
     
     func pauseAnimation() {
