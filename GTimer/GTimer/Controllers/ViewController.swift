@@ -38,49 +38,10 @@ class ViewController: UIViewController {
         return imageView
     }()
     
-    let timerWorkLabel: UILabel = {
-        let timerWorkLabel = UILabel()
-        timerWorkLabel.text = "01:00"
-        timerWorkLabel.font = UIFont.systemFont(ofSize: 50)
-        timerWorkLabel.textColor = .white
-        timerWorkLabel.numberOfLines = 0
-        timerWorkLabel.textAlignment = .center
-        timerWorkLabel.translatesAutoresizingMaskIntoConstraints = false
-        return timerWorkLabel
-    }()
-    
-    let timerBreakLabel: UILabel = {
-        let timerBreakLabel = UILabel()
-        timerBreakLabel.text = "00:30"
-        timerBreakLabel.font = UIFont.systemFont(ofSize: 50)
-        timerBreakLabel.textColor = .white
-        timerBreakLabel.numberOfLines = 0
-        timerBreakLabel.textAlignment = .center
-        timerBreakLabel.translatesAutoresizingMaskIntoConstraints = false
-        return timerBreakLabel
-    }()
-    
-    let workLabel: UILabel = {
-        let workLabel = UILabel()
-        workLabel.text = "Work"
-        workLabel.font = UIFont.systemFont(ofSize: 25)
-        workLabel.textColor = .white
-        workLabel.numberOfLines = 0
-        workLabel.textAlignment = .center
-        workLabel.translatesAutoresizingMaskIntoConstraints = false
-        return workLabel
-    }()
-    
-    let breakLabel: UILabel = {
-        let breakLabel = UILabel()
-        breakLabel.text = "Break"
-        breakLabel.font = UIFont.systemFont(ofSize: 25)
-        breakLabel.textColor = .white
-        breakLabel.numberOfLines = 0
-        breakLabel.textAlignment = .center
-        breakLabel.translatesAutoresizingMaskIntoConstraints = false
-        return breakLabel
-    }()
+    let timerWorkLabel = FactoryLabel.getTitleLabel(textTitleLabel: "01:00", sizeTitle: 50)
+    let timerBreakLabel = FactoryLabel.getTitleLabel(textTitleLabel: "00:30", sizeTitle: 50)
+    let workLabel = FactoryLabel.getTitleLabel(textTitleLabel: "Work", sizeTitle: 25)
+    let breakLabel = FactoryLabel.getTitleLabel(textTitleLabel: "Break", sizeTitle: 25)
     
     lazy  var pageControl: UIPageControl = {
         let pageControl = UIPageControl()

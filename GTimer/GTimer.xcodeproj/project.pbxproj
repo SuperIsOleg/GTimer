@@ -16,6 +16,7 @@
 		F4DD5E5627D3AFE100445D04 /* GTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E5527D3AFE100445D04 /* GTimerTests.swift */; };
 		F4DD5E6027D3AFE100445D04 /* GTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E5F27D3AFE100445D04 /* GTimerUITests.swift */; };
 		F4DD5E6227D3AFE100445D04 /* GTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E6127D3AFE100445D04 /* GTimerUITestsLaunchTests.swift */; };
+		F4F45CC527E8EC230020790F /* FactoryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F45CC427E8EC230020790F /* FactoryLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		F4DD5E5B27D3AFE100445D04 /* GTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4DD5E5F27D3AFE100445D04 /* GTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTimerUITests.swift; sourceTree = "<group>"; };
 		F4DD5E6127D3AFE100445D04 /* GTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F4F45CC427E8EC230020790F /* FactoryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				F4DD5E3F27D3AFE000445D04 /* ViewController.swift */,
+				F4F45CC427E8EC230020790F /* FactoryLabel.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				F4DD5E4027D3AFE000445D04 /* ViewController.swift in Sources */,
 				F4DD5E3C27D3AFE000445D04 /* AppDelegate.swift in Sources */,
 				F4DD5E3E27D3AFE000445D04 /* SceneDelegate.swift in Sources */,
+				F4F45CC527E8EC230020790F /* FactoryLabel.swift in Sources */,
 				F4DD5E4627D3AFE000445D04 /* GTimer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
