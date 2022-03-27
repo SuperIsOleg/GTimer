@@ -10,6 +10,13 @@ import Foundation
 
 class ViewController: UIViewController {
     
+    var pickerView: UIPickerView = {
+        var pickerView = UIPickerView()
+        pickerView.backgroundColor = nil
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        return pickerView
+    }()
+    
     lazy var viewTimerWorked: UIView = {
         let viewTimerWorked = UIView()
         viewTimerWorked.backgroundColor = nil
@@ -42,11 +49,19 @@ class ViewController: UIViewController {
     let timerBreakLabel = FactoryLabel.getTitleLabel(textTitleLabel: "00:30", sizeTitle: 50)
     let workLabel = FactoryLabel.getTitleLabel(textTitleLabel: "Work", sizeTitle: 25)
     let breakLabel = FactoryLabel.getTitleLabel(textTitleLabel: "Break", sizeTitle: 25)
+    let labelMinutes = FactoryLabel.getTitleLabel(textTitleLabel: "мин.", sizeTitle: 20)
+    let labelSeconds = FactoryLabel.getTitleLabel(textTitleLabel: "сек.", sizeTitle: 20)
+    
     
     lazy  var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         
         let colors: [UIColor] = [UIColor(named: "TimerColorWork")!, UIColor(named: "TimerColorBreak")!]
+        pageControl.numberOfPages = views.count
+        pageControl.currentPage = 0
+        pageControl.backgroundColor = nil
+        pageControl.preferredIndicatorImage = UIImage(named: "PageIndecator")
+        //        pageControl.setIndicatorImage(UIImage(named: "PageIndecator"), forPage: 1)
         
         for x in 0..<views.count {
             if x == 0 {
@@ -56,15 +71,10 @@ class ViewController: UIViewController {
             }
         }
         
-        pageControl.numberOfPages = views.count
-        pageControl.currentPage = 0
-        pageControl.backgroundColor = nil
-//        pageControl.currentPageIndicatorTintColor = UIColor(named: "TimerColorWork") // цвет выбранной вьюшки
-//        pageControl.pageIndicatorTintColor = .green // цвет не выбранной вьюшки
-        pageControl.preferredIndicatorImage = UIImage(named: "PageIndecator")
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
+    
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -101,6 +111,7 @@ class ViewController: UIViewController {
     
     var timer = Timer()
     var durationTimer = 60
+    var time: [Int] = Array(0...59)
     var isTimerStarted = false
     var isAnimationStarted = false
     let shapeLayerWorkTimer = CAShapeLayer()
@@ -114,7 +125,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor(named: "LightBlue")!.cgColor,
@@ -128,6 +139,9 @@ class ViewController: UIViewController {
         
         pageControl.addTarget(self, action: #selector(pageControlDidChange(_ :)), for: .valueChanged)
         view.addSubview(pageControl)
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
         
         setConstraints()
         
@@ -145,11 +159,21 @@ class ViewController: UIViewController {
         cancelButton.alpha = 1.0
         
         if !isTimerStarted{
+            
+            viewTimerWorked.addSubview(cercleTimerWorkImage)
+            NSLayoutConstraint.activate([
+                cercleTimerWorkImage.centerXAnchor.constraint(equalTo: viewTimerWorked.centerXAnchor),
+                cercleTimerWorkImage.centerYAnchor.constraint(equalTo: viewTimerWorked.centerYAnchor),
+                cercleTimerWorkImage.heightAnchor.constraint(equalToConstant: 400),
+                cercleTimerWorkImage.widthAnchor.constraint(equalToConstant: 400)
+            ])
+            
+            pickerView.reloadAllComponents()
+            
             startResumeAnimation()
             startTimer()
             isTimerStarted = true
             startButton.setBackgroundImage(UIImage(named: "PauseButton"), for: .normal)
-            
         } else {
             pauseAnimation()
             timer.invalidate()
@@ -163,26 +187,37 @@ class ViewController: UIViewController {
     }
     
     @objc func cancelButtonTaped() {
+        
+        cercleTimerWorkImage.removeFromSuperview()
+        
+        viewTimerWorked.addSubview(pickerView)
+        NSLayoutConstraint.activate([
+            pickerView.centerXAnchor.constraint(equalTo: viewTimerWorked.centerXAnchor),
+            pickerView.centerYAnchor.constraint(equalTo: viewTimerWorked.centerYAnchor),
+            pickerView.heightAnchor.constraint(equalToConstant: 200),
+            pickerView.widthAnchor.constraint(equalToConstant: viewTimerWorked.bounds.size.width - 100)
+        ])
+        
         stopAnimation()
         cancelButton.isEnabled = false
         cancelButton.alpha = 0.5
         timer.invalidate()
         durationTimer = 60
         isTimerStarted = false
-        timerWorkLabel.text = "01:00"
+        timerWorkLabel.text = formatTimer()
         startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
-       
+        
     }
     
     @objc func updateTimer() {
         if durationTimer < 1 {
-        cancelButton.isEnabled = false
+            cancelButton.isEnabled = false
             cancelButton.alpha = 0.5
             startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
             timer.invalidate()
             durationTimer = 60
             isTimerStarted = false
-            timerWorkLabel.text = "01:00"
+            timerWorkLabel.text = formatTimer()
         } else {
             durationTimer -= 1
             timerWorkLabel.text = formatTimer()
@@ -275,7 +310,7 @@ class ViewController: UIViewController {
         shapeLayerWorkTimer.removeAllAnimations()
         isAnimationStarted = false
     }
- 
+    
     internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         stopAnimation()
     }
@@ -292,14 +327,14 @@ extension ViewController {
             scrollView.heightAnchor.constraint(equalToConstant: 380),
         ])
         
-        viewTimerWorked.addSubview(cercleTimerWorkImage)
+        viewTimerWorked.addSubview(pickerView)
         NSLayoutConstraint.activate([
-            cercleTimerWorkImage.centerXAnchor.constraint(equalTo: viewTimerWorked.centerXAnchor),
-            cercleTimerWorkImage.centerYAnchor.constraint(equalTo: viewTimerWorked.centerYAnchor),
-            cercleTimerWorkImage.heightAnchor.constraint(equalToConstant: 400),
-            cercleTimerWorkImage.widthAnchor.constraint(equalToConstant: 400)
+            pickerView.centerXAnchor.constraint(equalTo: viewTimerWorked.centerXAnchor),
+            pickerView.centerYAnchor.constraint(equalTo: viewTimerWorked.centerYAnchor),
+            pickerView.heightAnchor.constraint(equalToConstant: 200),
+            pickerView.widthAnchor.constraint(equalToConstant: viewTimerWorked.bounds.size.width - 100)
         ])
- 
+        
         cercleTimerWorkImage.addSubview(timerWorkLabel)
         NSLayoutConstraint.activate([
             timerWorkLabel.centerXAnchor.constraint(equalTo: cercleTimerWorkImage.centerXAnchor),
@@ -342,18 +377,30 @@ extension ViewController {
         
         view.addSubview(startButton)
         NSLayoutConstraint.activate([
-            startButton.centerXAnchor.constraint(equalTo: pageControl.centerXAnchor),
-            startButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 70),
+            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             startButton.heightAnchor.constraint(equalToConstant: 120),
             startButton.widthAnchor.constraint(equalToConstant: 120)
         ])
         
         view.addSubview(cancelButton)
         NSLayoutConstraint.activate([
-            cancelButton.centerXAnchor.constraint(equalTo: startButton.centerXAnchor),
-            cancelButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 0),
+            cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
             cancelButton.heightAnchor.constraint(equalToConstant: 30),
             cancelButton.widthAnchor.constraint(equalToConstant: 70)
+        ])
+        
+        pickerView.addSubview(labelMinutes)
+        NSLayoutConstraint.activate([
+            labelMinutes.centerXAnchor.constraint(equalTo: pickerView.centerXAnchor, constant: -10),
+            labelMinutes.centerYAnchor.constraint(equalTo: pickerView.centerYAnchor)
+        ])
+        
+        pickerView.addSubview(labelSeconds)
+        NSLayoutConstraint.activate([
+            labelSeconds.centerXAnchor.constraint(equalTo: pickerView.centerXAnchor, constant: 90),
+            labelSeconds.centerYAnchor.constraint(equalTo: pickerView.centerYAnchor)
         ])
     }
 }
@@ -363,4 +410,86 @@ extension ViewController: UIScrollViewDelegate {
         pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
     }
 }
+
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    //    var selectedRow: Int {
+    //        return pickerView.selectedRow(inComponent: 0) // для чего он?
+    //    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return time.count
+        case 1:
+            return time.count
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0:
+            return "\(time[row])"
+        case 1:
+            return "\(time[row])"
+        default:
+            return ""
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        switch component {
+        case 0:
+            var minutesNumbers: Int = (time[row] * 60) {
+                didSet {
+                    durationTimer == minutesNumbers
+                }
+            }
+            return  print("\(durationTimer)")
+        case 1:
+            var secondsNumbers: Int = (time[row]) {
+                didSet {
+                    durationTimer += secondsNumbers
+                }
+            }
+            return print("\(durationTimer)")
+        default:
+            break
+        }
+        
+    }
+    
+    //     возвращает расстояние между компонентами в ячейке
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 100
+    }
+    
+    // возвращает высоту ячейки
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 40
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        let pickerLabelNumbers = UILabel()
+        pickerLabelNumbers.textColor = (row == pickerView.selectedRow(inComponent: component)) ? UIColor.white : UIColor.white
+        pickerLabelNumbers.text = String(time[row])
+        pickerLabelNumbers.textAlignment = .center
+        pickerLabelNumbers.font = UIFont.systemFont(ofSize: 20)
+        return pickerLabelNumbers
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerView.reloadAllComponents()
+    }
+    
+}
+
 
