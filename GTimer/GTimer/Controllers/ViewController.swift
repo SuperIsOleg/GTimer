@@ -110,7 +110,18 @@ class ViewController: UIViewController {
     }()
     
     var timer = Timer()
-    var durationTimer = 60
+    
+    var minutesNumbers = 0
+    var secondsNumbers = 0
+    
+    lazy var durationTimerStarted: Int = {
+        return minutesNumbers + secondsNumbers
+    }()
+    
+    lazy var durationTimer: Int = {
+        return durationTimerStarted
+    }()
+    
     var time: [Int] = Array(0...59)
     var isTimerStarted = false
     var isAnimationStarted = false
@@ -202,7 +213,7 @@ class ViewController: UIViewController {
         cancelButton.isEnabled = false
         cancelButton.alpha = 0.5
         timer.invalidate()
-        durationTimer = 60
+        durationTimer = durationTimerStarted
         isTimerStarted = false
         timerWorkLabel.text = formatTimer()
         startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
@@ -215,7 +226,7 @@ class ViewController: UIViewController {
             cancelButton.alpha = 0.5
             startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
             timer.invalidate()
-            durationTimer = 60
+            durationTimer = durationTimerStarted
             isTimerStarted = false
             timerWorkLabel.text = formatTimer()
         } else {
@@ -447,18 +458,10 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
         switch component {
         case 0:
-            var minutesNumbers: Int = (time[row] * 60) {
-                didSet {
-                    durationTimer == minutesNumbers
-                }
-            }
+            minutesNumbers = (time[row] * 60)
             return  print("\(durationTimer)")
         case 1:
-            var secondsNumbers: Int = (time[row]) {
-                didSet {
-                    durationTimer += secondsNumbers
-                }
-            }
+            secondsNumbers = (time[row])
             return print("\(durationTimer)")
         default:
             break
