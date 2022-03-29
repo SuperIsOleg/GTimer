@@ -10,12 +10,16 @@ import Foundation
 
 class ViewController: UIViewController {
     
-    var pickerView: UIPickerView = {
-        var pickerView = UIPickerView()
-        pickerView.backgroundColor = nil
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
-        return pickerView
-    }()
+    let pickerView = UIPickerView()
+    
+    func setUpPickerView() {
+        pickerView.frame.size.width = 240
+        pickerView.layer.position = CGPoint(x: self.viewTimerWorked.frame.width/2, y:self.viewTimerWorked.frame.size.height/3)
+        pickerView.reloadAllComponents()
+        viewTimerWorked.addSubview(pickerView)
+        pickerView.delegate = self
+        pickerView.dataSource = self
+    }
     
     lazy var viewTimerWorked: UIView = {
         let viewTimerWorked = UIView()
@@ -49,9 +53,6 @@ class ViewController: UIViewController {
     let timerBreakLabel = FactoryLabel.getTitleLabel(textTitleLabel: "00:30", sizeTitle: 50)
     let workLabel = FactoryLabel.getTitleLabel(textTitleLabel: "Work", sizeTitle: 25)
     let breakLabel = FactoryLabel.getTitleLabel(textTitleLabel: "Break", sizeTitle: 25)
-    let labelMinutes = FactoryLabel.getTitleLabel(textTitleLabel: "мин.", sizeTitle: 20)
-    let labelSeconds = FactoryLabel.getTitleLabel(textTitleLabel: "сек.", sizeTitle: 20)
-    
     
     lazy  var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
@@ -74,7 +75,6 @@ class ViewController: UIViewController {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
-    
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -111,6 +111,9 @@ class ViewController: UIViewController {
     
     var timer = Timer()
     
+    var secIntArray = [Int](0...59)
+    var minIntArray = [Int](1...10)
+    
     var minutesNumbers = 0
     var secondsNumbers = 0
     
@@ -122,7 +125,6 @@ class ViewController: UIViewController {
         return durationTimerStarted
     }()
     
-    var time: [Int] = Array(0...59)
     var isTimerStarted = false
     var isAnimationStarted = false
     let shapeLayerWorkTimer = CAShapeLayer()
@@ -151,10 +153,8 @@ class ViewController: UIViewController {
         pageControl.addTarget(self, action: #selector(pageControlDidChange(_ :)), for: .valueChanged)
         view.addSubview(pageControl)
         
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        
         setConstraints()
+        setUpPickerView()
         
         startButton.addTarget(self, action: #selector(startButtonTaped), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancelButtonTaped), for: .touchUpInside)
@@ -169,6 +169,8 @@ class ViewController: UIViewController {
         cancelButton.isEnabled = true
         cancelButton.alpha = 1.0
         
+        
+        
         if !isTimerStarted{
             
             viewTimerWorked.addSubview(cercleTimerWorkImage)
@@ -178,9 +180,7 @@ class ViewController: UIViewController {
                 cercleTimerWorkImage.heightAnchor.constraint(equalToConstant: 400),
                 cercleTimerWorkImage.widthAnchor.constraint(equalToConstant: 400)
             ])
-            
-            pickerView.reloadAllComponents()
-            
+            pickerView.removeFromSuperview()
             startResumeAnimation()
             startTimer()
             isTimerStarted = true
@@ -200,15 +200,7 @@ class ViewController: UIViewController {
     @objc func cancelButtonTaped() {
         
         cercleTimerWorkImage.removeFromSuperview()
-        
-        viewTimerWorked.addSubview(pickerView)
-        NSLayoutConstraint.activate([
-            pickerView.centerXAnchor.constraint(equalTo: viewTimerWorked.centerXAnchor),
-            pickerView.centerYAnchor.constraint(equalTo: viewTimerWorked.centerYAnchor),
-            pickerView.heightAnchor.constraint(equalToConstant: 200),
-            pickerView.widthAnchor.constraint(equalToConstant: viewTimerWorked.bounds.size.width - 100)
-        ])
-        
+        setUpPickerView()
         stopAnimation()
         cancelButton.isEnabled = false
         cancelButton.alpha = 0.5
@@ -240,6 +232,7 @@ class ViewController: UIViewController {
         let seconds = Int(durationTimer) % 60
         return String(format: "%02i:%02i", minutes, seconds)
     }
+    
     
     //MARC: Animation
     
@@ -338,14 +331,6 @@ extension ViewController {
             scrollView.heightAnchor.constraint(equalToConstant: 380),
         ])
         
-        viewTimerWorked.addSubview(pickerView)
-        NSLayoutConstraint.activate([
-            pickerView.centerXAnchor.constraint(equalTo: viewTimerWorked.centerXAnchor),
-            pickerView.centerYAnchor.constraint(equalTo: viewTimerWorked.centerYAnchor),
-            pickerView.heightAnchor.constraint(equalToConstant: 200),
-            pickerView.widthAnchor.constraint(equalToConstant: viewTimerWorked.bounds.size.width - 100)
-        ])
-        
         cercleTimerWorkImage.addSubview(timerWorkLabel)
         NSLayoutConstraint.activate([
             timerWorkLabel.centerXAnchor.constraint(equalTo: cercleTimerWorkImage.centerXAnchor),
@@ -402,17 +387,6 @@ extension ViewController {
             cancelButton.widthAnchor.constraint(equalToConstant: 70)
         ])
         
-        pickerView.addSubview(labelMinutes)
-        NSLayoutConstraint.activate([
-            labelMinutes.centerXAnchor.constraint(equalTo: pickerView.centerXAnchor, constant: -10),
-            labelMinutes.centerYAnchor.constraint(equalTo: pickerView.centerYAnchor)
-        ])
-        
-        pickerView.addSubview(labelSeconds)
-        NSLayoutConstraint.activate([
-            labelSeconds.centerXAnchor.constraint(equalTo: pickerView.centerXAnchor, constant: 90),
-            labelSeconds.centerYAnchor.constraint(equalTo: pickerView.centerYAnchor)
-        ])
     }
 }
 
@@ -424,33 +398,46 @@ extension ViewController: UIScrollViewDelegate {
 
 extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
-    //    var selectedRow: Int {
-    //        return pickerView.selectedRow(inComponent: 0) // для чего он?
-    //    }
+   
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component {
-        case 0:
-            return time.count
-        case 1:
-            return time.count
-        default:
-            return 0
+            return 4
         }
-    }
+        
+        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            
+            switch component {
+            case 0:
+                return minIntArray.count
+            case 1:
+                return 1
+            case 2:
+                return secIntArray.count
+            case 3:
+                return 1
+            default:
+                return 0
+            }
+        }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0:
-            return "\(time[row])"
+            return "\(minIntArray[row])"
         case 1:
-            return "\(time[row])"
-        default:
+            let min = UILabel()
+            min.text = "min"
+            pickerView.setPickerLabels(labels: [1: min])
             return ""
+        case 2:
+            return "\(secIntArray[row])"
+        case 3:
+            let sec = UILabel()
+            sec.text = "sec"
+            pickerView.setPickerLabels(labels: [3: sec])
+            return ""
+        default:
+            return "error"
         }
     }
     
@@ -458,10 +445,10 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
         switch component {
         case 0:
-            minutesNumbers = (time[row] * 60)
+            minutesNumbers = (minIntArray[row] * 60)
             return  print("\(durationTimer)")
         case 1:
-            secondsNumbers = (time[row])
+            secondsNumbers = (secIntArray[row])
             return print("\(durationTimer)")
         default:
             break
@@ -469,30 +456,31 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
-    //     возвращает расстояние между компонентами в ячейке
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 100
-    }
-    
     // возвращает высоту ячейки
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 40
+        return 30
     }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-        let pickerLabelNumbers = UILabel()
-        pickerLabelNumbers.textColor = (row == pickerView.selectedRow(inComponent: component)) ? UIColor.white : UIColor.white
-        pickerLabelNumbers.text = String(time[row])
-        pickerLabelNumbers.textAlignment = .center
-        pickerLabelNumbers.font = UIFont.systemFont(ofSize: 20)
-        return pickerLabelNumbers
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerView.reloadAllComponents()
-    }
-    
+//
 }
 
+extension UIPickerView {
+    
+    func setPickerLabels(labels: [Int:UILabel]) { // [component number:label]
+        
+        let fontSize:CGFloat = 20
+        let labelWidth:CGFloat = self.frame.size.width / CGFloat(self.numberOfComponents)
+        let y:CGFloat = (self.frame.size.height / 2) - (fontSize / 2)
 
+        for i in 0...self.numberOfComponents {
+            
+            if let label = labels[i] {
+                label.frame = CGRect(x: labelWidth * CGFloat(i), y: y, width: labelWidth, height: fontSize)
+                label.font = UIFont.systemFont(ofSize: fontSize, weight: .light)
+                label.backgroundColor = .clear
+                label.textColor = .white
+                label.textAlignment = NSTextAlignment.left
+                self.addSubview(label)
+            }
+        }
+    }
+}
