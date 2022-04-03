@@ -114,16 +114,11 @@ class ViewController: UIViewController {
     var secIntArray = [Int](0...59)
     var minIntArray = [Int](1...10)
     
-    var minutesNumbers = 0
+    var minutesNumbers = 60
     var secondsNumbers = 0
     
-    lazy var durationTimerStarted: Int = {
-        return minutesNumbers + secondsNumbers
-    }()
-    
-    lazy var durationTimer: Int = {
-        return durationTimerStarted
-    }()
+    var durationTimer = 60
+    var durationTimerStarted = 0
     
     var isTimerStarted = false
     var isAnimationStarted = false
@@ -169,9 +164,7 @@ class ViewController: UIViewController {
         cancelButton.isEnabled = true
         cancelButton.alpha = 1.0
         
-        
-        
-        if !isTimerStarted{
+        if !isTimerStarted {
             
             viewTimerWorked.addSubview(cercleTimerWorkImage)
             NSLayoutConstraint.activate([
@@ -194,18 +187,19 @@ class ViewController: UIViewController {
     }
     
     func startTimer() {
+        timerWorkLabel.text = formatTimer()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc func cancelButtonTaped() {
-        
         cercleTimerWorkImage.removeFromSuperview()
+        durationTimer = minutesNumbers + secondsNumbers
         setUpPickerView()
         stopAnimation()
         cancelButton.isEnabled = false
         cancelButton.alpha = 0.5
         timer.invalidate()
-        durationTimer = durationTimerStarted
+     
         isTimerStarted = false
         timerWorkLabel.text = formatTimer()
         startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
@@ -218,7 +212,7 @@ class ViewController: UIViewController {
             cancelButton.alpha = 0.5
             startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
             timer.invalidate()
-            durationTimer = durationTimerStarted
+            durationTimer = 0
             isTimerStarted = false
             timerWorkLabel.text = formatTimer()
         } else {
@@ -446,19 +440,19 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         switch component {
         case 0:
             minutesNumbers = (minIntArray[row] * 60)
-            return  print("\(durationTimer)")
-        case 1:
+            print("\(durationTimer)")
+        case 2:
             secondsNumbers = (secIntArray[row])
-            return print("\(durationTimer)")
+            print("\(durationTimer)")
         default:
             break
         }
-        
+        durationTimer = minutesNumbers + secondsNumbers
     }
     
     // возвращает высоту ячейки
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30
+        return 40
     }
 //
 }
@@ -467,7 +461,7 @@ extension UIPickerView {
     
     func setPickerLabels(labels: [Int:UILabel]) { // [component number:label]
         
-        let fontSize:CGFloat = 20
+        let fontSize:CGFloat = 25
         let labelWidth:CGFloat = self.frame.size.width / CGFloat(self.numberOfComponents)
         let y:CGFloat = (self.frame.size.height / 2) - (fontSize / 2)
 
