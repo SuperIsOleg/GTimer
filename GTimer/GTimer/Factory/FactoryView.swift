@@ -5,7 +5,6 @@
 //  Created by Home on 4.04.22.
 //
 
-
 import UIKit
 
 class FactoryView {

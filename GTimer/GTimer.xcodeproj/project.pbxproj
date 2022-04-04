@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F4B2500D27FAB96B00B0C84F /* ViewController+UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2500C27FAB96B00B0C84F /* ViewController+UIPickerView.swift */; };
+		F413B84727FAD777002DA625 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F413B84627FAD777002DA625 /* FirstViewController.swift */; };
+		F4B2500D27FAB96B00B0C84F /* FirstView+UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2500C27FAB96B00B0C84F /* FirstView+UIPickerView.swift */; };
 		F4B2501227FABAB200B0C84F /* FactoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2501127FABAB200B0C84F /* FactoryImage.swift */; };
 		F4B2501427FABC4000B0C84F /* FactoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2501327FABC4000B0C84F /* FactoryView.swift */; };
-		F4B2501627FAC28900B0C84F /* ViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2501527FAC28900B0C84F /* ViewController+Constraints.swift */; };
-		F4B2501827FAC98700B0C84F /* ViewController+UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2501727FAC98700B0C84F /* ViewController+UIScrollView.swift */; };
+		F4B2501627FAC28900B0C84F /* FirstView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2501527FAC28900B0C84F /* FirstView+Constraints.swift */; };
+		F4B2501827FAC98700B0C84F /* FirstView+UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2501727FAC98700B0C84F /* FirstView+UIScrollView.swift */; };
+		F4B2501C27FACBAD00B0C84F /* ModelTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B2501B27FACBAD00B0C84F /* ModelTimer.swift */; };
 		F4DD5E3C27D3AFE000445D04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E3B27D3AFE000445D04 /* AppDelegate.swift */; };
 		F4DD5E3E27D3AFE000445D04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E3D27D3AFE000445D04 /* SceneDelegate.swift */; };
-		F4DD5E4027D3AFE000445D04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E3F27D3AFE000445D04 /* ViewController.swift */; };
+		F4DD5E4027D3AFE000445D04 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E3F27D3AFE000445D04 /* FirstView.swift */; };
 		F4DD5E4627D3AFE000445D04 /* GTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4DD5E4427D3AFE000445D04 /* GTimer.xcdatamodeld */; };
 		F4DD5E4827D3AFE100445D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4DD5E4727D3AFE100445D04 /* Assets.xcassets */; };
 		F4DD5E4B27D3AFE100445D04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4DD5E4927D3AFE100445D04 /* LaunchScreen.storyboard */; };
@@ -42,15 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F4B2500C27FAB96B00B0C84F /* ViewController+UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UIPickerView.swift"; sourceTree = "<group>"; };
+		F413B84627FAD777002DA625 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		F4B2500C27FAB96B00B0C84F /* FirstView+UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstView+UIPickerView.swift"; sourceTree = "<group>"; };
 		F4B2501127FABAB200B0C84F /* FactoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryImage.swift; sourceTree = "<group>"; };
 		F4B2501327FABC4000B0C84F /* FactoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryView.swift; sourceTree = "<group>"; };
-		F4B2501527FAC28900B0C84F /* ViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Constraints.swift"; sourceTree = "<group>"; };
-		F4B2501727FAC98700B0C84F /* ViewController+UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UIScrollView.swift"; sourceTree = "<group>"; };
+		F4B2501527FAC28900B0C84F /* FirstView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstView+Constraints.swift"; sourceTree = "<group>"; };
+		F4B2501727FAC98700B0C84F /* FirstView+UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstView+UIScrollView.swift"; sourceTree = "<group>"; };
+		F4B2501B27FACBAD00B0C84F /* ModelTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTimer.swift; sourceTree = "<group>"; };
 		F4DD5E3827D3AFE000445D04 /* GTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4DD5E3B27D3AFE000445D04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4DD5E3D27D3AFE000445D04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F4DD5E3F27D3AFE000445D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F4DD5E3F27D3AFE000445D04 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		F4DD5E4527D3AFE000445D04 /* GTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GTimer.xcdatamodel; sourceTree = "<group>"; };
 		F4DD5E4727D3AFE100445D04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4DD5E4A27D3AFE100445D04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,9 +95,9 @@
 		F4B2500B27FAB91700B0C84F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				F4B2500C27FAB96B00B0C84F /* ViewController+UIPickerView.swift */,
-				F4B2501527FAC28900B0C84F /* ViewController+Constraints.swift */,
-				F4B2501727FAC98700B0C84F /* ViewController+UIScrollView.swift */,
+				F4B2500C27FAB96B00B0C84F /* FirstView+UIPickerView.swift */,
+				F4B2501727FAC98700B0C84F /* FirstView+UIScrollView.swift */,
+				F4B2501527FAC28900B0C84F /* FirstView+Constraints.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -182,6 +186,7 @@
 		F4DD5E7027D3B23800445D04 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F413B84627FAD777002DA625 /* FirstViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,7 +194,7 @@
 		F4DD5E7227D3B25100445D04 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F4DD5E3F27D3AFE000445D04 /* ViewController.swift */,
+				F4DD5E3F27D3AFE000445D04 /* FirstView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 		F4DD5E7327D3B25F00445D04 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4B2501B27FACBAD00B0C84F /* ModelTimer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,15 +337,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4DD5E4027D3AFE000445D04 /* ViewController.swift in Sources */,
+				F4DD5E4027D3AFE000445D04 /* FirstView.swift in Sources */,
 				F4DD5E3C27D3AFE000445D04 /* AppDelegate.swift in Sources */,
 				F4B2501227FABAB200B0C84F /* FactoryImage.swift in Sources */,
+				F413B84727FAD777002DA625 /* FirstViewController.swift in Sources */,
 				F4DD5E3E27D3AFE000445D04 /* SceneDelegate.swift in Sources */,
-				F4B2501827FAC98700B0C84F /* ViewController+UIScrollView.swift in Sources */,
+				F4B2501C27FACBAD00B0C84F /* ModelTimer.swift in Sources */,
+				F4B2501827FAC98700B0C84F /* FirstView+UIScrollView.swift in Sources */,
 				F4F45CC527E8EC230020790F /* FactoryLabel.swift in Sources */,
-				F4B2501627FAC28900B0C84F /* ViewController+Constraints.swift in Sources */,
+				F4B2501627FAC28900B0C84F /* FirstView+Constraints.swift in Sources */,
 				F4DD5E4627D3AFE000445D04 /* GTimer.xcdatamodeld in Sources */,
-				F4B2500D27FAB96B00B0C84F /* ViewController+UIPickerView.swift in Sources */,
+				F4B2500D27FAB96B00B0C84F /* FirstView+UIPickerView.swift in Sources */,
 				F4B2501427FABC4000B0C84F /* FactoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

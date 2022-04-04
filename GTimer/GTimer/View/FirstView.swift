@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FirstView.swift
 //  GTimer
 //
 //  Created by Home on 5.03.22.
@@ -7,20 +7,19 @@
 
 import UIKit
 
-
-class ViewController: UIViewController {
+class FirstView: UIViewController {
     
     let pickerView = UIPickerView()
     
     var timer = Timer()
     
-    var secIntArray = [Int](0...59)
-    var minIntArray = [Int](1...10)
+    var secNumber = SecIntArray()
+    var minNumber = MinIntArray()
     
-    var minutesNumbers = 60
-    var secondsNumbers = 0
+    var minutesNumbersStarted = 60
+    var secondsNumbersStarted = 0
     
-    var durationTimer = 60
+   lazy var durationTimer = minutesNumbersStarted + secondsNumbersStarted
     
     var isTimerStarted = false
     var isAnimationStarted = false
@@ -141,6 +140,7 @@ class ViewController: UIViewController {
         cancelButton.isEnabled = true
         cancelButton.alpha = 1.0
         if !isTimerStarted {
+            pickerView.removeFromSuperview()
             viewTimerWorked.addSubview(cercleTimerWorkImage)
             NSLayoutConstraint.activate([
                 cercleTimerWorkImage.centerXAnchor.constraint(equalTo: viewTimerWorked.centerXAnchor),
@@ -148,7 +148,6 @@ class ViewController: UIViewController {
                 cercleTimerWorkImage.heightAnchor.constraint(equalToConstant: 400),
                 cercleTimerWorkImage.widthAnchor.constraint(equalToConstant: 400)
             ])
-            pickerView.removeFromSuperview()
             startResumeAnimation()
             startTimer()
             isTimerStarted = true
@@ -168,7 +167,7 @@ class ViewController: UIViewController {
     
     @objc func cancelButtonTaped() {
         cercleTimerWorkImage.removeFromSuperview()
-        durationTimer = minutesNumbers + secondsNumbers
+        durationTimer = minutesNumbersStarted + secondsNumbersStarted
         setUpPickerView()
         stopAnimation()
         cancelButton.isEnabled = false
