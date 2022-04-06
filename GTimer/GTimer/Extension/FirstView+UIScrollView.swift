@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension FirstView: UIScrollViewDelegate {
+extension MainView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension FirstView: UIPickerViewDelegate, UIPickerViewDataSource {
+extension MainView: UIPickerViewDelegate, UIPickerViewDataSource {
      
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 4
@@ -52,13 +52,13 @@ extension FirstView: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0:
-            minutesNumbersStarted = (minNumber.minIntArray[row] * 60)
+            minutesNumbersStartedWorked = (minNumber.minIntArray[row] * 60)
         case 2:
-            secondsNumbersStarted = (secNumber.secIntArray[row])
+            secondsNumbersStartedWorked = (secNumber.secIntArray[row])
         default:
             break
         }
-        durationTimer = minutesNumbersStarted + secondsNumbersStarted
+        durationTimerWorked = minutesNumbersStartedWorked + secondsNumbersStartedWorked
     }
     
     // возвращает высоту ячейки

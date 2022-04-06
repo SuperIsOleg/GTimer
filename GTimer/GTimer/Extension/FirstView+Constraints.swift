@@ -7,20 +7,20 @@
 
 import UIKit
 
-extension FirstView {
+extension MainView {
     
     func setConstraints() {
         
-        view.addSubview(scrollView)
+        self.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scrollView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 320),
+            scrollView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            scrollView.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 320),
             scrollView.heightAnchor.constraint(equalToConstant: 380),
         ])
         
-        view.addSubview(pageControl)
+        self.addSubview(pageControl)
         NSLayoutConstraint.activate([
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pageControl.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             pageControl.topAnchor.constraint(equalTo: viewTimerWorked.bottomAnchor, constant: 30),
             pageControl.heightAnchor.constraint(equalToConstant: 10),
             pageControl.widthAnchor.constraint(equalToConstant: 200)
@@ -58,18 +58,18 @@ extension FirstView {
             breakLabel.centerYAnchor.constraint(equalTo: viewTimerBreak.bottomAnchor)
         ])
         
-        view.addSubview(startButton)
+        self.addSubview(startButton)
         NSLayoutConstraint.activate([
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            startButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),
             startButton.heightAnchor.constraint(equalToConstant: 120),
             startButton.widthAnchor.constraint(equalToConstant: 120)
         ])
         
-        view.addSubview(cancelButton)
+        self.addSubview(cancelButton)
         NSLayoutConstraint.activate([
-            cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            cancelButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
             cancelButton.heightAnchor.constraint(equalToConstant: 30),
             cancelButton.widthAnchor.constraint(equalToConstant: 70)
         ])

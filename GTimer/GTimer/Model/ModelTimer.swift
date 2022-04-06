@@ -12,5 +12,5 @@ struct SecIntArray {
 }
 
 struct MinIntArray {
-    var minIntArray = [Int](1...10)
+    var minIntArray = [Int](0...59)
 }
