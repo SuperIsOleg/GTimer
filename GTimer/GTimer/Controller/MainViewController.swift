@@ -13,6 +13,7 @@ final class MainViewController: UIViewController {
     
     var timer = Timer()
     let shapeLayerWorkTimer = CAShapeLayer()
+    let shapeLayerBreakTimer = CAShapeLayer()
     
     var isTimerStartedWorked = false
     var isAnimationStartedWorked = false
@@ -24,6 +25,7 @@ final class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.animationCircularWorkTimer()
+        self.animationCircularBreakTimer()
     }
     
     override func viewDidLoad() {
@@ -45,12 +47,21 @@ final class MainViewController: UIViewController {
       
         if !isTimerStartedWorked {
             mainView.pickerViewWorked.removeFromSuperview()
+            mainView.pickerViewBreak.removeFromSuperview()
             mainView.viewTimerWorked.addSubview(mainView.cercleTimerWorkImage)
             NSLayoutConstraint.activate([
                 mainView.cercleTimerWorkImage.centerXAnchor.constraint(equalTo: mainView.viewTimerWorked.centerXAnchor),
                 mainView.cercleTimerWorkImage.centerYAnchor.constraint(equalTo: mainView.viewTimerWorked.centerYAnchor),
                 mainView.cercleTimerWorkImage.heightAnchor.constraint(equalToConstant: 400),
                 mainView.cercleTimerWorkImage.widthAnchor.constraint(equalToConstant: 400)
+            ])
+            
+            mainView.viewTimerBreak.addSubview(mainView.cercleTimerBreakImage)
+            NSLayoutConstraint.activate([
+                mainView.cercleTimerBreakImage.centerXAnchor.constraint(equalTo: mainView.viewTimerBreak.centerXAnchor),
+                mainView.cercleTimerBreakImage.centerYAnchor.constraint(equalTo: mainView.viewTimerBreak.centerYAnchor),
+                mainView.cercleTimerBreakImage.heightAnchor.constraint(equalToConstant: 400),
+                mainView.cercleTimerBreakImage.widthAnchor.constraint(equalToConstant: 400)
             ])
             startResumeAnimation()
             startTimerWorked()
@@ -66,6 +77,7 @@ final class MainViewController: UIViewController {
     
     func startTimerWorked() {
         mainView.timerWorkLabel.text = formatTimer()
+        mainView.timerBreakLabel.text = formatTimer()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
@@ -74,12 +86,14 @@ final class MainViewController: UIViewController {
         mainView.cercleTimerBreakImage.removeFromSuperview()
         mainView.durationTimerWorked = 0
         mainView.setUpPickerViewWorked()
+        mainView.setUpPickerViewBreak()
         stopAnimation()
         mainView.cancelButton.isEnabled = false
         mainView.cancelButton.alpha = 0.5
         timer.invalidate()
         isTimerStartedWorked = false
         mainView.timerWorkLabel.text = formatTimer()
+        mainView.timerBreakLabel.text = formatTimer()
         mainView.startButton.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
     }
     
@@ -92,11 +106,15 @@ final class MainViewController: UIViewController {
             mainView.durationTimerWorked = mainView.minutesNumbersStartedWorked + mainView.secondsNumbersStartedWorked
             isTimerStartedWorked = false
             mainView.timerWorkLabel.text = formatTimer()
+            mainView.timerBreakLabel.text = formatTimer()
             mainView.cercleTimerWorkImage.removeFromSuperview()
+            mainView.cercleTimerBreakImage.removeFromSuperview()
             mainView.setUpPickerViewWorked()
+            mainView.setUpPickerViewBreak()
         } else {
             mainView.durationTimerWorked -= 1
             mainView.timerWorkLabel.text = formatTimer()
+            mainView.timerBreakLabel.text = formatTimer()
         }
     }
     
@@ -122,15 +140,30 @@ final class MainViewController: UIViewController {
         mainView.cercleTimerWorkImage.layer.addSublayer(shapeLayerWorkTimer)
     }
     
+    func animationCircularBreakTimer() {
+        let center = CGPoint(x: mainView.cercleTimerBreakImage.frame.width / 2, y: mainView.cercleTimerBreakImage.frame.height / 2)
+        let endAngle = (-CGFloat.pi / 2)
+        let startAngle = 2 * CGFloat.pi + endAngle
+        let circularPatch = UIBezierPath(arcCenter: center, radius: 97, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+        shapeLayerBreakTimer.path = circularPatch.cgPath
+        shapeLayerBreakTimer.lineWidth = 3.5
+        shapeLayerBreakTimer.fillColor = UIColor.clear.cgColor
+        shapeLayerBreakTimer.strokeEnd = 1
+        shapeLayerBreakTimer.lineCap = CAShapeLayerLineCap.round
+        shapeLayerBreakTimer.strokeColor = UIColor(named: "TimerColorBreak")!.cgColor
+        mainView.cercleTimerBreakImage.layer.addSublayer(shapeLayerBreakTimer)
+    }
+    
     func startResumeAnimation() {
         if !isAnimationStartedWorked {
-            startAnimation()
+            startWorkedAnimation()
+            startBreakAnimation()
         } else {
             resumeAnimation()
         }
     }
     
-    func startAnimation() {
+    func startWorkedAnimation() {
         let animationWorked = CABasicAnimation(keyPath: "strokeEnd")
         stopAnimation()
         shapeLayerWorkTimer.strokeEnd = 0.0
@@ -142,10 +175,25 @@ final class MainViewController: UIViewController {
         isAnimationStartedWorked = true
     }
     
+    func startBreakAnimation() {
+        let animationWorked = CABasicAnimation(keyPath: "strokeEnd")
+        stopAnimation()
+        shapeLayerBreakTimer.strokeEnd = 0.0
+        animationWorked.toValue = 0
+        animationWorked.duration = CFTimeInterval(mainView.durationTimerWorked)
+        animationWorked.fillMode = CAMediaTimingFillMode.forwards
+        animationWorked.isRemovedOnCompletion = true
+        shapeLayerBreakTimer.add(animationWorked, forKey: "startAnimation")
+        isAnimationStartedWorked = true
+    }
+    
     func pauseAnimation() {
         let pausedTimeWorked = shapeLayerWorkTimer.convertTime(CACurrentMediaTime(), from: nil)
+        let pausedTimeBreak = shapeLayerBreakTimer.convertTime(CACurrentMediaTime(), from: nil)
         shapeLayerWorkTimer.speed = 0.0
+        shapeLayerBreakTimer.speed = 0.0
         shapeLayerWorkTimer.timeOffset = pausedTimeWorked
+        shapeLayerBreakTimer.timeOffset = pausedTimeBreak
     }
     
     func resumeAnimation() {
@@ -155,6 +203,14 @@ final class MainViewController: UIViewController {
         shapeLayerWorkTimer.beginTime = 0.0
         let timeSincePausedWorked = shapeLayerWorkTimer.convertTime(CACurrentMediaTime(), from: nil) - pausedTimeWorked
         shapeLayerWorkTimer.beginTime = timeSincePausedWorked
+        
+        let pausedTimeBreak = shapeLayerBreakTimer.timeOffset
+        shapeLayerBreakTimer.speed = 1.0
+        shapeLayerBreakTimer.timeOffset = 0.0
+        shapeLayerBreakTimer.beginTime = 0.0
+        let timeSincePausedBreak = shapeLayerBreakTimer.convertTime(CACurrentMediaTime(), from: nil) - pausedTimeBreak
+        shapeLayerBreakTimer.beginTime = timeSincePausedBreak
+        
     }
     
     func stopAnimation() {
@@ -164,6 +220,12 @@ final class MainViewController: UIViewController {
         shapeLayerWorkTimer.strokeEnd = 0.0
         shapeLayerWorkTimer.removeAllAnimations()
         isAnimationStartedWorked = false
+        
+        shapeLayerBreakTimer.speed = 1.0
+        shapeLayerBreakTimer.timeOffset = 0.0
+        shapeLayerBreakTimer.beginTime = 0.0
+        shapeLayerBreakTimer.strokeEnd = 0.0
+        shapeLayerBreakTimer.removeAllAnimations()
     }
     
     internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {

@@ -19,15 +19,12 @@ final class MainView: UIView {
 
     lazy var durationTimerWorked = minutesNumbersStartedWorked + secondsNumbersStartedWorked
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     var onClouserPageControl: (() -> Void)?
     var onClouserStartButton: (() -> Void)?
     var onClouserCancelButton: (() -> Void)?
 
     let pickerViewWorked = UIPickerView()
+    let pickerViewBreak = UIPickerView()
 
     lazy var viewTimerWorked = FactoryView.getView()
     lazy var viewTimerBreak = FactoryView.getView()
@@ -100,9 +97,14 @@ final class MainView: UIView {
         setGradientLayer()
         setConstraints()
         setUpPickerViewWorked()
+        setUpPickerViewBreak()
         pageControl.addTarget(self, action: #selector(self.pageControlDidChange), for: .valueChanged)
         startButton.addTarget(self, action: #selector(self.startButtonTaped), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(self.cancelButtonTaped), for: .touchUpInside)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     @objc func pageControlDidChange() {
@@ -124,6 +126,15 @@ final class MainView: UIView {
         viewTimerWorked.addSubview(pickerViewWorked)
         pickerViewWorked.delegate = self
         pickerViewWorked.dataSource = self
+    }
+    
+    func setUpPickerViewBreak() {
+        pickerViewBreak.frame.size.width = 240
+        pickerViewBreak.layer.position = CGPoint(x: self.viewTimerBreak.frame.width/2, y:self.viewTimerBreak.frame.size.height/3)
+        pickerViewBreak.reloadAllComponents()
+        viewTimerBreak.addSubview(pickerViewBreak)
+        pickerViewBreak.delegate = self
+        pickerViewBreak.dataSource = self
     }
     
     func setGradientLayer () {
