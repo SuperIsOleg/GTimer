@@ -1,9 +1,9 @@
 # GTimer
 The GTimer application is designed to be a timer for your gym activities and concentration at work.
 
-Design pattern: MVC
-Local database: Not
-Other frameworks: UIKit
++ Design pattern: MVC
++ Local database: Not
++ Other frameworks: UIKit
 
 ## App Preview
 ![Снимок экрана 2022-04-07 в 21 46 16](https://user-images.githubusercontent.com/92751604/162282710-aa87fd84-58be-4f05-8eab-bcc62bfa3027.jpg)
