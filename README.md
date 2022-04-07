@@ -1,4 +1,4 @@
-# GTimer
+# GTimer APP
 The GTimer application is designed to be a timer for your gym activities and concentration at work.
 
 + Design pattern: MVC
