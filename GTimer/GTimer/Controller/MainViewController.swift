@@ -47,21 +47,12 @@ final class MainViewController: UIViewController {
       
         if !isTimerStartedWorked {
             mainView.pickerViewWorked.removeFromSuperview()
-            mainView.pickerViewBreak.removeFromSuperview()
             mainView.viewTimerWorked.addSubview(mainView.cercleTimerWorkImage)
             NSLayoutConstraint.activate([
                 mainView.cercleTimerWorkImage.centerXAnchor.constraint(equalTo: mainView.viewTimerWorked.centerXAnchor),
                 mainView.cercleTimerWorkImage.centerYAnchor.constraint(equalTo: mainView.viewTimerWorked.centerYAnchor),
                 mainView.cercleTimerWorkImage.heightAnchor.constraint(equalToConstant: 400),
                 mainView.cercleTimerWorkImage.widthAnchor.constraint(equalToConstant: 400)
-            ])
-            
-            mainView.viewTimerBreak.addSubview(mainView.cercleTimerBreakImage)
-            NSLayoutConstraint.activate([
-                mainView.cercleTimerBreakImage.centerXAnchor.constraint(equalTo: mainView.viewTimerBreak.centerXAnchor),
-                mainView.cercleTimerBreakImage.centerYAnchor.constraint(equalTo: mainView.viewTimerBreak.centerYAnchor),
-                mainView.cercleTimerBreakImage.heightAnchor.constraint(equalToConstant: 400),
-                mainView.cercleTimerBreakImage.widthAnchor.constraint(equalToConstant: 400)
             ])
             startResumeAnimation()
             startTimerWorked()
@@ -77,16 +68,14 @@ final class MainViewController: UIViewController {
     
     func startTimerWorked() {
         mainView.timerWorkLabel.text = formatTimer()
-        mainView.timerBreakLabel.text = formatTimer()
+//        mainView.timerBreakLabel.text = formatTimer()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc func cancelButtonTaped() {
         mainView.cercleTimerWorkImage.removeFromSuperview()
-        mainView.cercleTimerBreakImage.removeFromSuperview()
         mainView.durationTimerWorked = 0
         mainView.setUpPickerViewWorked()
-        mainView.setUpPickerViewBreak()
         stopAnimation()
         mainView.cancelButton.isEnabled = false
         mainView.cancelButton.alpha = 0.5
@@ -108,9 +97,7 @@ final class MainViewController: UIViewController {
             mainView.timerWorkLabel.text = formatTimer()
             mainView.timerBreakLabel.text = formatTimer()
             mainView.cercleTimerWorkImage.removeFromSuperview()
-            mainView.cercleTimerBreakImage.removeFromSuperview()
             mainView.setUpPickerViewWorked()
-            mainView.setUpPickerViewBreak()
         } else {
             mainView.durationTimerWorked -= 1
             mainView.timerWorkLabel.text = formatTimer()
@@ -157,7 +144,6 @@ final class MainViewController: UIViewController {
     func startResumeAnimation() {
         if !isAnimationStartedWorked {
             startWorkedAnimation()
-            startBreakAnimation()
         } else {
             resumeAnimation()
         }
@@ -173,18 +159,9 @@ final class MainViewController: UIViewController {
         animationWorked.isRemovedOnCompletion = true
         shapeLayerWorkTimer.add(animationWorked, forKey: "startAnimation")
         isAnimationStartedWorked = true
-    }
-    
-    func startBreakAnimation() {
-        let animationWorked = CABasicAnimation(keyPath: "strokeEnd")
-        stopAnimation()
+        
         shapeLayerBreakTimer.strokeEnd = 0.0
-        animationWorked.toValue = 0
-        animationWorked.duration = CFTimeInterval(mainView.durationTimerWorked)
-        animationWorked.fillMode = CAMediaTimingFillMode.forwards
-        animationWorked.isRemovedOnCompletion = true
         shapeLayerBreakTimer.add(animationWorked, forKey: "startAnimation")
-        isAnimationStartedWorked = true
     }
     
     func pauseAnimation() {

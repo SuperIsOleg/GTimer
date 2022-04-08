@@ -26,7 +26,13 @@ extension MainView {
             pageControl.widthAnchor.constraint(equalToConstant: 200)
         ])
 
-       
+        viewTimerBreak.addSubview(cercleTimerBreakImage)
+        NSLayoutConstraint.activate([
+            cercleTimerBreakImage.centerXAnchor.constraint(equalTo: viewTimerBreak.centerXAnchor),
+            cercleTimerBreakImage.centerYAnchor.constraint(equalTo: viewTimerBreak.centerYAnchor),
+            cercleTimerBreakImage.heightAnchor.constraint(equalToConstant: 400),
+            cercleTimerBreakImage.widthAnchor.constraint(equalToConstant: 400)
+        ])
         
         cercleTimerWorkImage.addSubview(timerWorkLabel)
         NSLayoutConstraint.activate([
